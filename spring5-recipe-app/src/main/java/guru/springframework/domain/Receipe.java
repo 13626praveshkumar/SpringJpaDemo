@@ -20,6 +20,11 @@ public class Receipe {
 
     @Lob
     private Byte[] image;
+    // it will insert value with as String instead on index which Ordinal will do.
+    // If we use ordinal then it will cause issue in future if we add new enum value between specified enums.
+    //@Enumerated(value = EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
+    private Diffulcuty diffulcuty;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
@@ -114,5 +119,13 @@ public class Receipe {
 
     public void setIngredientSet(Set<Ingredient> ingredientSet) {
         this.ingredientSet = ingredientSet;
+    }
+
+    public Diffulcuty getDiffulcuty() {
+        return diffulcuty;
+    }
+
+    public void setDiffulcuty(Diffulcuty diffulcuty) {
+        this.diffulcuty = diffulcuty;
     }
 }
