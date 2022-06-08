@@ -24,13 +24,16 @@ public class Receipe {
     // If we use ordinal then it will cause issue in future if we add new enum value between specified enums.
     //@Enumerated(value = EnumType.ORDINAL)
     @Enumerated(value = EnumType.STRING)
-    private Diffulcuty diffulcuty;
+    private Difficulty diffulcuty;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "receipe")
     private Set<Ingredient> ingredientSet=new HashSet<>();
+
+    @ManyToMany(mappedBy = "receipes")
+    private Set<Categories> categories=new HashSet<>();
 
 
     public String getDescription() {
@@ -121,11 +124,19 @@ public class Receipe {
         this.ingredientSet = ingredientSet;
     }
 
-    public Diffulcuty getDiffulcuty() {
+    public Difficulty getDiffulcuty() {
         return diffulcuty;
     }
 
-    public void setDiffulcuty(Diffulcuty diffulcuty) {
+    public void setDiffulcuty(Difficulty diffulcuty) {
         this.diffulcuty = diffulcuty;
+    }
+
+    public Set<Categories> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Categories> categories) {
+        this.categories = categories;
     }
 }
